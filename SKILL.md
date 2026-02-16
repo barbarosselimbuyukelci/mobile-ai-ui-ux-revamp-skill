@@ -156,6 +156,19 @@ Never pause workflow at Step 0 or Step 1 to run quality-score scripts.
 Run validation at the defined stage, apply fixes internally, and continue.
 Ask the user only if a hard blocker prevents script execution.
 
+## Step Output Contract (Critical)
+
+Do not keep step outputs only in chat context.
+Persist every step output as a file artifact and reference it in the execution report.
+
+Use `references/step-output-contract.md` to enforce:
+
+- Required output file per step
+- Required sections per file
+- Dependency chain between step artifacts
+
+If a required artifact is missing, do not mark that step complete.
+
 ## Step 0: Infer Product Intent From Code (Mandatory When Code Exists)
 
 When a codebase is available, derive intent before proposing UX.
@@ -400,6 +413,7 @@ Load resources only when needed:
 - `references/ux-writing.md`: Voice, tone, and microcopy patterns.
 - `references/evaluation-testing.md`: Mandatory heuristic review, usability testing, metrics, and acceptance criteria.
 - `references/implementation-verification.md`: Traceability, CI gates, and delivery-proof validation.
+- `references/step-output-contract.md`: Required output file and section contract for each workflow step.
 - `assets/design-brief-template.md`: Reusable project brief template.
 - `assets/app-intent-inference-template.md`: Reusable template for code-derived app purpose and ordered operations.
 - `assets/screen-spec-template.md`: Reusable single-screen mobile specification template.

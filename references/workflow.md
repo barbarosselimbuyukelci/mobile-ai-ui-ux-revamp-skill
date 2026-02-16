@@ -11,6 +11,7 @@
 7. Execution continuity policy
 8. Method defaults
 9. Validation timing
+10. Step output contract
 
 ## Output Contract
 
@@ -111,3 +112,15 @@ Run scripts only at designated stages:
 
 Never run score scripts immediately after Step 0.
 Never block progression on early scoring.
+
+## Step Output Contract
+
+Persist each step as a file artifact under a run-scoped folder:
+
+- `run-artifacts/<run-id>/`
+
+Use required filenames and minimum sections from:
+
+- `references/step-output-contract.md`
+
+Do not mark any step complete without its artifact file and execution-report link.

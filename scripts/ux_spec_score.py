@@ -114,7 +114,7 @@ CHECKS = [
     ),
     (
         "traceability_matrix",
-        6,
+        5,
         [
             "traceability matrix",
             "spec item",
@@ -125,7 +125,7 @@ CHECKS = [
     ),
     (
         "ci_quality_gates",
-        6,
+        5,
         [
             "ci quality-gate",
             "golden-flow",
@@ -169,6 +169,17 @@ CHECKS = [
             "post step 8",
             "step 9",
             "never run score scripts immediately after step 0",
+        ],
+    ),
+    (
+        "step_output_contract",
+        2,
+        [
+            "step output contract",
+            "run-artifacts/<run-id>/",
+            "required step artifacts",
+            "execution report",
+            "do not mark any step complete without its artifact",
         ],
     ),
 ]

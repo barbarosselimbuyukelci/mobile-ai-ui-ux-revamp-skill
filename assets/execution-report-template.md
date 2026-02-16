@@ -8,6 +8,7 @@ Use this file to record continuous workflow execution.
 - Date:
 - Agent:
 - Mode: Continuous execution (Step 0 to Step 10)
+- Artifact root: run-artifacts/<run-id>/
 
 ## Step Status Log
 
@@ -53,5 +54,6 @@ Use this file to record continuous workflow execution.
 - [ ] Any blockers documented with fallback assumptions
 - [ ] No mid-run method-choice interruption without hard blocker
 - [ ] Validation scripts run at correct steps
+- [ ] Step output contract satisfied for completed steps
 - [ ] Required artifacts produced
 - [ ] Quality gates passed

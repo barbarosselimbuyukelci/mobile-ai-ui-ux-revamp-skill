@@ -113,3 +113,11 @@ Verify:
 - `ux_spec_score.py` was not run before Step 8 artifacts existed
 - `check_traceability.py` was run only when matrix artifact existed
 - Early script runs did not block progression to downstream steps
+
+## Step Output Contract Validation
+
+Verify:
+
+- Required step artifact files exist in `run-artifacts/<run-id>/`
+- Execution report links each completed step to its artifact file path
+- No completed step is missing minimum required sections
