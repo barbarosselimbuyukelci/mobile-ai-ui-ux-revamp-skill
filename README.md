@@ -49,6 +49,91 @@ Attribution note:
 - Traceability matrix and CI quality-gate validation
 - Step output contract with file-based run memory
 
+## Product Strategy Layer (PM Mode)
+
+This skill does not jump directly into screens.
+It starts like a strong product manager and builds design from product logic.
+
+For each run, it defines:
+
+- Product objective and user outcome
+- North-star and supporting success metrics
+- Constraints (platform, legal, engineering, timeline)
+- Assumptions and risks
+- Explicit non-goals
+
+The result is a decision baseline that prevents random UI changes.
+
+## Target Audience Modeling
+
+The skill "imagines" target users through structured modeling, not guesswork.
+
+It builds:
+
+- Primary and secondary user segments
+- Context of use (when, where, interruption level, urgency)
+- Capability differences (novice, regular, power user)
+- Trust and cognitive load risks
+
+Each audience claim is tied to code evidence or clearly marked as an assumption.
+
+## User Story Generation
+
+The skill produces executable product stories before visual design.
+
+Primary format:
+
+`As a [user], I need to [task], so I can [outcome].`
+
+Optional high-precision format for complex flows:
+
+`When [context], I want to [action], so I can [benefit].`
+
+Every critical story gets:
+
+- Priority level
+- Flow position (`open`, `discover`, `act`, `verify`, `manage`)
+- Success signal
+- Failure and recovery expectation
+
+## Design Decision Engine
+
+Design decisions are made through a transparent chain:
+
+1. Codebase evidence and current behavior
+2. Product goal and user story impact
+3. Platform conventions and library constraints
+4. Accessibility and trust requirements
+5. 2026 trend alignment
+
+For major decisions, the skill documents:
+
+- Decision statement
+- Options considered
+- Selected option
+- Why it was selected
+- Tradeoffs
+- Metric impact hypothesis
+
+This keeps design review objective and implementation-friendly.
+
+## What You Get Per Run
+
+In addition to final specs, each run produces durable artifacts:
+
+- Intent inference report
+- Product framing and audience model
+- User stories and flow architecture
+- Screen-level specs with state behavior
+- Visual system and UX writing package
+- Quality gate reports
+- Traceability and CI verification evidence
+
+See:
+
+- `references/step-output-contract.md`
+- `assets/execution-report-template.md`
+
 ## Workflow At A Glance
 
 1. Infer app purpose and user operations from code
