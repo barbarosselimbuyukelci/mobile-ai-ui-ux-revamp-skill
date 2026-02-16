@@ -48,6 +48,7 @@ Attribution note:
 - Accessibility, heuristic, and usability gates
 - Traceability matrix and CI quality-gate validation
 - Step output contract with file-based run memory
+- No silent requirement drops during implementation
 
 ## Product Strategy Layer (PM Mode)
 
@@ -169,6 +170,8 @@ Compatible with Python 3.9+.
 python scripts/infer_app_intent.py <repo_path>
 python scripts/ux_spec_score.py <spec.md_or_artifact_dir> --min-score 80
 python scripts/check_traceability.py <matrix.md_or_csv>
+python scripts/build_execution_manifest.py <run-artifacts/run-id>
+python scripts/check_implementation_completeness.py <matrix.md_or_csv>
 ```
 
 ## Artifact Memory Model
@@ -181,6 +184,24 @@ Each step must write its own output artifact. See:
 
 - `references/step-output-contract.md`
 - `assets/execution-report-template.md`
+
+## Execution Agent Setup
+
+After design artifacts are ready, generate a coding handoff manifest:
+
+```bash
+python scripts/build_execution_manifest.py run-artifacts/<run-id>
+```
+
+Then execute with:
+
+- `references/execution-agent-playbook.md`
+- `assets/execution-agent-prompt-template.md`
+- `assets/architecture-delta-template.md`
+- `assets/implementation-completeness-template.md`
+
+This lets a second coding agent move directly from design artifacts to
+dependency-ordered implementation batches.
 
 ## Library Coverage
 

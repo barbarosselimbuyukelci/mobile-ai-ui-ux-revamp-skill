@@ -14,6 +14,8 @@
 10. Step output contract
 11. Planning horizon policy
 12. Design direction alignment checkpoint
+13. Execution agent handoff
+14. Implementation integrity policy
 
 ## Output Contract
 
@@ -34,6 +36,7 @@ Always include both layers:
 8. Mandatory quality gates
 9. Engineering and QA handoff
 10. Implementation verification and CI proof
+11. Execution-agent handoff manifest generation
 
 ## Mobile Constraints
 
@@ -160,3 +163,27 @@ If user skips input:
 
 - Use recommended default
 - Record assumption in execution report
+
+## Execution Agent Handoff
+
+After design artifacts are complete, generate an execution manifest:
+
+`python scripts/build_execution_manifest.py <run-artifacts/run-id>`
+
+Then hand off to coding agent with:
+
+- `references/execution-agent-playbook.md`
+- `assets/execution-agent-prompt-template.md`
+- `assets/architecture-delta-template.md`
+- `assets/implementation-completeness-template.md`
+
+## Implementation Integrity Policy
+
+Do not silently skip any design requirement during implementation.
+
+If a requirement requires architecture change:
+
+- document it in `13-architecture-delta-report.md`
+- track status in `14-implementation-completeness-matrix.md`
+
+A run is incomplete if requirements are missing status or rationale.

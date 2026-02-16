@@ -138,3 +138,30 @@ Verify:
 - Recommended default option was stated
 - One concise alignment question was asked before direction lock
 - If user input was unavailable, fallback assumption was documented
+
+## Execution Agent Handoff Validation
+
+Verify:
+
+- `12-execution-manifest.md` exists in artifact folder
+- Manifest references core artifacts and dependency-ordered batches
+- Coding agent handoff prompt/template is available and used
+- `13-architecture-delta-report.md` exists when architecture-impact requirements exist
+- `14-implementation-completeness-matrix.md` exists for implementation run
+- `check_implementation_completeness.py` passes on completeness matrix
+
+## No Silent Omission Validation
+
+Verify:
+
+- Every major design requirement has implementation status
+- No requirement is silently absent from implementation outputs
+- `blocked` and `deferred` items include reason, evidence, and owner
+
+## Architecture Delta Validation
+
+Verify:
+
+- `13-architecture-delta-report.md` exists when structural changes are needed
+- Architecture-impact items include migration and rollback notes
+- Completeness matrix links architecture-impact requirements to decisions

@@ -115,7 +115,7 @@ CHECKS = [
     ),
     (
         "traceability_matrix",
-        5,
+        4,
         [
             "traceability matrix",
             "spec item",
@@ -126,7 +126,7 @@ CHECKS = [
     ),
     (
         "ci_quality_gates",
-        5,
+        4,
         [
             "ci quality-gate",
             "golden-flow",
@@ -201,6 +201,21 @@ CHECKS = [
             "2 to 3 design direction options",
             "recommended default option",
             "one concise alignment question",
+        ],
+    ),
+    (
+        "execution_agent_handoff",
+        2,
+        [
+            "execution agent handoff",
+            "build_execution_manifest.py",
+            "12-execution-manifest.md",
+            "execution-agent-playbook",
+            "execution-agent-prompt-template",
+            "never silently skip",
+            "13-architecture-delta-report.md",
+            "14-implementation-completeness-matrix.md",
+            "check_implementation_completeness.py",
         ],
     ),
 ]

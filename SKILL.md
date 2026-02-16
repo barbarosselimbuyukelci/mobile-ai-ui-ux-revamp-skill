@@ -99,6 +99,7 @@ Use `references/library-catalog.md` first, then load only the relevant ecosystem
 8. Run mandatory quality gates.
 9. Package implementation and QA handoff.
 10. Verify implementation with traceability and CI evidence.
+11. Generate execution-agent handoff manifest when coding agent delivery is required.
 
 ## Execution Mode (Critical)
 
@@ -174,6 +175,29 @@ If timeline planning is explicitly requested:
 - Prefer dependency-based milestones first
 - Keep time horizon concise and assumption-marked
 - Do not block implementation details behind future phases
+
+## Implementation Integrity Policy (Critical)
+
+Never silently skip a design requirement.
+
+If a requirement needs architectural change:
+
+- Do not ignore the requirement
+- Do not downgrade it without reporting
+- Record architecture impact and implementation path explicitly
+
+Mandatory reporting artifacts for implementation runs:
+
+- `13-architecture-delta-report.md`
+- `14-implementation-completeness-matrix.md`
+
+Completion status for each requirement must be one of:
+
+- implemented
+- blocked
+- deferred
+
+`blocked` or `deferred` always require reason, evidence, and decision owner.
 
 ## Design Direction Alignment Policy (Critical)
 
@@ -395,6 +419,8 @@ Required evidence package:
 - Accessibility automation results and manual spot checks
 - Visual regression and interaction regression results
 - Post-release instrumentation checks for drop-off and error spikes
+- Architecture delta report for design features requiring structural changes
+- Implementation completeness matrix covering all design requirements
 
 Use:
 
@@ -405,6 +431,33 @@ Use:
 When a traceability matrix file exists, validate it:
 
 `python scripts/check_traceability.py <matrix.md_or_csv>`
+
+When implementation completeness matrix exists, validate it:
+
+`python scripts/check_implementation_completeness.py <matrix.md_or_csv>`
+
+## Step 10: Execution Agent Handoff (Recommended)
+
+If implementation will be done by a coding agent, create an execution-ready
+manifest from produced artifacts.
+
+Run:
+
+`python scripts/build_execution_manifest.py <artifact_dir> --output <artifact_dir>/12-execution-manifest.md`
+
+Then hand off with:
+
+- `references/execution-agent-playbook.md`
+- `assets/execution-agent-prompt-template.md`
+- `assets/architecture-delta-template.md`
+- `assets/implementation-completeness-template.md`
+
+The execution agent must:
+
+- Implement dependency-ordered batches
+- Update traceability evidence while coding
+- Maintain implementation completeness matrix per requirement
+- Run tests and quality gates before completion
 
 ## Quality Gate
 
@@ -427,7 +480,10 @@ Before final response, verify all of the following:
 - Usability testing plan is included.
 - Handoff details are specific enough for implementation.
 - Output uses immediate implementation batches unless timeline was explicitly requested.
+- No design requirement was silently dropped.
+- Architecture-impact items are reported with clear decision path.
 - Traceability matrix is complete and evidence-backed.
+- Implementation completeness matrix is complete and validated.
 - CI quality-gate evidence is present for critical flows and states.
 - Golden-flow E2E checks are present.
 - Visual and accessibility regression checks are present.
@@ -457,7 +513,9 @@ Load resources only when needed:
 - `references/ux-writing.md`: Voice, tone, and microcopy patterns.
 - `references/evaluation-testing.md`: Mandatory heuristic review, usability testing, metrics, and acceptance criteria.
 - `references/implementation-verification.md`: Traceability, CI gates, and delivery-proof validation.
+- `references/execution-agent-playbook.md`: How a coding agent should execute the produced UX artifacts.
 - `references/step-output-contract.md`: Required output file and section contract for each workflow step.
+- `references/architecture-delta-guidelines.md`: How to handle architecture-changing design requirements safely.
 - `assets/design-brief-template.md`: Reusable project brief template.
 - `assets/app-intent-inference-template.md`: Reusable template for code-derived app purpose and ordered operations.
 - `assets/screen-spec-template.md`: Reusable single-screen mobile specification template.
@@ -465,6 +523,9 @@ Load resources only when needed:
 - `assets/traceability-matrix-template.md`: Map spec requirements to tests, code, and CI evidence.
 - `assets/ci-quality-gates-template.yml`: CI gate skeleton for UX delivery verification.
 - `assets/execution-report-template.md`: Track step-by-step execution status and blockers without pausing the workflow.
+- `assets/execution-agent-prompt-template.md`: Ready-to-run prompt contract for implementation agents.
+- `assets/architecture-delta-template.md`: Report architecture-impact requirements and migration decisions.
+- `assets/implementation-completeness-template.md`: Track implementation status of every design requirement.
 
 ## Collaboration Rules
 

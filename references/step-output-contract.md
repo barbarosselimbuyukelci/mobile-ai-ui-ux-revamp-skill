@@ -29,6 +29,17 @@ Use a run-scoped folder:
 | 9 | `10-verification.md` | traceability summary, CI gate results, regression outcomes |
 | 10 | `11-release-summary.md` | final decisions, residual risks, next actions |
 
+## Optional Execution-Agent Artifact
+
+When implementation is delegated to a coding agent, also generate:
+
+- `12-execution-manifest.md`
+- `13-architecture-delta-report.md`
+- `14-implementation-completeness-matrix.md`
+
+This file should include dependency-ordered implementation batches, quality
+targets, and handoff contract references.
+
 ## Dependency Rule
 
 Each step file must reference inputs from prior files it depends on.
