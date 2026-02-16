@@ -15,6 +15,25 @@ Most AI design flows stop too early.
 
 This skill fixes that with strict execution rules, artifact-based memory, and validation timing.
 
+## 2026 Trend Alignment
+
+This skill is built to track and operationalize 2026 UX direction.
+
+- Explainable AI by default with what/why/override patterns
+- Agentic UX with role boundaries, handoffs, and human takeover points
+- Dynamic interface generation with constraints, safety rails, and evaluation criteria
+- Voice plus touch multimodal interaction patterns
+- Micro-interactions as core feedback language, not decoration
+- Personalization with privacy boundaries and explicit user control
+- Accessibility as a foundational quality gate
+- Passwordless and biometric-first flow assumptions
+
+Trend coverage is baked into workflow rules and references, especially:
+
+- `references/ai-ux-trends-2026.md`
+- `references/design-principles.md`
+- `references/evaluation-testing.md`
+
 ## Core Capabilities
 
 - Codebase intent inference with evidence paths and confidence levels
