@@ -100,6 +100,30 @@ Use `references/library-catalog.md` first, then load only the relevant ecosystem
 9. Package implementation and QA handoff.
 10. Verify implementation with traceability and CI evidence.
 
+## Execution Mode (Critical)
+
+Run the workflow in one uninterrupted pass unless a hard blocker appears.
+
+Hard blocker means:
+
+- Missing required credentials or repo access
+- Missing mandatory input that cannot be inferred from code or context
+- Tool/runtime failure that prevents continuation
+
+Do not stop after a completed step to ask "what next?".
+Do not request approval between normal steps.
+Continue automatically from Step 0 through Step 10.
+
+If a hard blocker appears:
+
+- Ask one concise blocker question
+- Provide a best-effort default assumption
+- If the user does not respond, proceed with the assumption and mark risk clearly
+
+For every run, maintain a progress artifact using:
+
+- `assets/execution-report-template.md`
+
 ## Step 0: Infer Product Intent From Code (Mandatory When Code Exists)
 
 When a codebase is available, derive intent before proposing UX.
@@ -298,6 +322,7 @@ When a traceability matrix file exists, validate it:
 
 Before final response, verify all of the following:
 
+- Workflow executed continuously from Step 0 to Step 10 (or blocker explicitly recorded).
 - App purpose is inferred from code evidence (or explicitly marked unavailable).
 - Primary user operations are ordered and tied to UX sequencing rules.
 - Claims are supported by concrete code references.
@@ -348,6 +373,7 @@ Load resources only when needed:
 - `assets/ux-qa-checklist.md`: Reusable QA checklist for handoff.
 - `assets/traceability-matrix-template.md`: Map spec requirements to tests, code, and CI evidence.
 - `assets/ci-quality-gates-template.yml`: CI gate skeleton for UX delivery verification.
+- `assets/execution-report-template.md`: Track step-by-step execution status and blockers without pausing the workflow.
 
 ## Collaboration Rules
 

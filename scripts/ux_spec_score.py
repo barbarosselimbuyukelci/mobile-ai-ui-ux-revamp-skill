@@ -21,7 +21,7 @@ CHECKS = [
     ),
     (
         "production_layer",
-        7,
+        6,
         ["production layer", "screen", "flow"],
     ),
     (
@@ -31,7 +31,7 @@ CHECKS = [
     ),
     (
         "flow_coverage",
-        7,
+        6,
         ["happy path", "fallback", "error"],
     ),
     (
@@ -46,12 +46,12 @@ CHECKS = [
     ),
     (
         "heuristic_gate",
-        7,
+        6,
         ["heuristic", "score", "severity"],
     ),
     (
         "usability_test_gate",
-        7,
+        6,
         ["usability test", "task completion", "time on task"],
     ),
     (
@@ -132,6 +132,19 @@ CHECKS = [
             "state coverage",
             "visual regression",
             "accessibility",
+        ],
+    ),
+    (
+        "execution_continuity",
+        4,
+        [
+            "execution mode",
+            "uninterrupted pass",
+            "do not stop",
+            "what next",
+            "hard blocker",
+            "step 0",
+            "step 10",
         ],
     ),
 ]

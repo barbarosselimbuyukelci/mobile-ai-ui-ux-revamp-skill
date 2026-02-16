@@ -8,6 +8,7 @@
 4. Failure modes
 5. Done criteria
 6. Delivery proof
+7. Execution continuity policy
 
 ## Output Contract
 
@@ -68,3 +69,20 @@ A delivery claim is valid only when:
 - State coverage tests pass for loading, empty, error, success, offline
 - Accessibility checks pass with automated and manual evidence
 - Visual regression checks pass for critical screens
+
+## Execution Continuity Policy
+
+Default behavior:
+
+- Execute Step 0 through Step 10 without asking for mid-step confirmation.
+- Do not pause after Step 0 to ask the user what to do next.
+
+Allowed pause:
+
+- Only when a hard blocker prevents continuation (access, credentials, unrecoverable runtime failure, or non-inferable mandatory input).
+
+When paused for blocker:
+
+- Ask one concise blocker question.
+- Propose a best-effort default assumption.
+- Resume immediately after answer or proceed with stated assumption if no answer.

@@ -89,3 +89,11 @@ Verify:
 - Accessibility checks are automated and documented
 - Visual regression is enabled for critical screens
 - Fail criteria are explicit and block release
+
+## Execution Continuity Validation
+
+Verify:
+
+- Workflow log shows sequential execution from Step 0 to Step 10
+- No mid-step "what next" pause occurred without a hard blocker
+- Any pause includes blocker reason, question, and fallback assumption
