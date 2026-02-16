@@ -34,6 +34,11 @@ Trend coverage is baked into workflow rules and references, especially:
 - `references/design-principles.md`
 - `references/evaluation-testing.md`
 
+Attribution note:
+
+- This trend framing also references: "10 UX Design Shifts You Can't Ignore in 2026"  
+  https://uxdesign.cc/10-ux-design-shifts-you-cant-ignore-in-2026-8f0da1c6741d
+
 ## Core Capabilities
 
 - Codebase intent inference with evidence paths and confidence levels
