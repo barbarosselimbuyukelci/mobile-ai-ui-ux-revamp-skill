@@ -1,9 +1,9 @@
 ---
-name: craft-interface-experience
+name: mobile-ai-ui-ux-revamp-skill
 description: Comprehensive mobile UI and UX design workflow for creating accurate, user-friendly, charming interfaces. Use when an AI agent must deliver both concept direction and production-ready mobile specs, including flows, screen behavior, visual systems, microcopy, accessibility checks, heuristic audits, usability testing plans, and implementation handoff. Tool-agnostic.
 ---
 
-# Craft Interface Experience
+# Mobile AI UI UX Revamp Skill
 
 ## Overview
 
