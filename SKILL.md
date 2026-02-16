@@ -156,6 +156,46 @@ Never pause workflow at Step 0 or Step 1 to run quality-score scripts.
 Run validation at the defined stage, apply fixes internally, and continue.
 Ask the user only if a hard blocker prevents script execution.
 
+## Planning Horizon Policy (Critical)
+
+Default to immediate execution planning, not calendar planning.
+
+Required default output:
+
+- "Implement now" batch list (concrete code changes)
+- Dependency-ordered task groups
+- Acceptance checks per batch
+
+Do not output week-by-week or phase roadmap unless user explicitly requests
+timeline planning.
+
+If timeline planning is explicitly requested:
+
+- Prefer dependency-based milestones first
+- Keep time horizon concise and assumption-marked
+- Do not block implementation details behind future phases
+
+## Design Direction Alignment Policy (Critical)
+
+Before locking major design decisions, ask for user input once with concise options.
+
+Mandatory checkpoint timing:
+
+- After Step 2 (user/context model) and before finalizing Step 3-5 outputs
+
+Checkpoint format:
+
+- 2 to 3 design direction options
+- Clear tradeoff for each option
+- Recommended default option
+- One concise alignment question
+
+Do not ask broad open-ended questions.
+Do not skip this checkpoint unless user explicitly says "decide without me".
+
+If user does not respond, proceed with recommended default and record the
+assumption in execution report.
+
 ## Step Output Contract (Critical)
 
 Do not keep step outputs only in chat context.
@@ -239,6 +279,7 @@ Create:
 Document each flow with trigger, steps, decision points, success criteria, and failure recovery.
 
 Use `references/interaction-patterns.md` for pattern selection and flow conventions.
+Run the Design Direction Alignment checkpoint before locking final flow and visual direction.
 
 ## Step 4: Specify Mobile Interactions And States
 
@@ -336,6 +377,7 @@ Deliver:
 - Accessibility notes
 - Instrumentation and success metrics
 - QA acceptance checklist
+- Immediate implementation plan (next executable batches, no calendar by default)
 
 Use `assets/ux-qa-checklist.md` to generate acceptance criteria engineers and QA can execute.
 
@@ -372,6 +414,7 @@ Before final response, verify all of the following:
 - App purpose is inferred from code evidence (or explicitly marked unavailable).
 - Primary user operations are ordered and tied to UX sequencing rules.
 - Claims are supported by concrete code references.
+- Design direction alignment checkpoint was executed (or explicit skip recorded).
 - Problem framing is explicit and measurable.
 - Both concept and production layers are present.
 - Production layer includes explicit library target block.
@@ -383,6 +426,7 @@ Before final response, verify all of the following:
 - Heuristic evaluation is included.
 - Usability testing plan is included.
 - Handoff details are specific enough for implementation.
+- Output uses immediate implementation batches unless timeline was explicitly requested.
 - Traceability matrix is complete and evidence-backed.
 - CI quality-gate evidence is present for critical flows and states.
 - Golden-flow E2E checks are present.
@@ -390,7 +434,7 @@ Before final response, verify all of the following:
 
 When a detailed markdown spec exists, run:
 
-`python scripts/ux_spec_score.py <spec.md> --min-score 80`
+`python scripts/ux_spec_score.py <spec.md_or_artifact_dir> --min-score 80`
 
 If score is below threshold, revise and re-score.
 

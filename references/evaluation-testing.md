@@ -121,3 +121,20 @@ Verify:
 - Required step artifact files exist in `run-artifacts/<run-id>/`
 - Execution report links each completed step to its artifact file path
 - No completed step is missing minimum required sections
+
+## Planning Horizon Validation
+
+Verify:
+
+- Output defaults to immediate implementation batches
+- No unsolicited week-by-week or phase timeline was introduced
+- If timeline exists, user explicitly requested it and assumptions are documented
+
+## Design Direction Alignment Validation
+
+Verify:
+
+- User received 2 to 3 concrete direction options with tradeoffs
+- Recommended default option was stated
+- One concise alignment question was asked before direction lock
+- If user input was unavailable, fallback assumption was documented

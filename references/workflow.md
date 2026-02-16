@@ -12,6 +12,8 @@
 8. Method defaults
 9. Validation timing
 10. Step output contract
+11. Planning horizon policy
+12. Design direction alignment checkpoint
 
 ## Output Contract
 
@@ -124,3 +126,37 @@ Use required filenames and minimum sections from:
 - `references/step-output-contract.md`
 
 Do not mark any step complete without its artifact file and execution-report link.
+
+## Planning Horizon Policy
+
+Default planning mode:
+
+- immediate implementation batches
+- dependency-first ordering
+- no unsolicited week-by-week timeline
+
+Only generate weekly or phased rollout plans when the user explicitly asks for
+timeline planning.
+
+If timeline is requested, keep implementation details concrete for "now" scope
+and mark timeline assumptions clearly.
+
+## Design Direction Alignment Checkpoint
+
+Run one mandatory alignment checkpoint before locking major design direction.
+
+When:
+
+- After user/context modeling
+- Before finalizing IA, flow, and visual direction choices
+
+How:
+
+- Present 2 to 3 options
+- Show tradeoffs and recommended option
+- Ask one concise selection question
+
+If user skips input:
+
+- Use recommended default
+- Record assumption in execution report

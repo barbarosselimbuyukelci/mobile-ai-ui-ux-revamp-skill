@@ -6,6 +6,7 @@ Score a markdown UX spec against this skill's mandatory quality criteria.
 import argparse
 import sys
 from pathlib import Path
+from typing import List, Optional, Tuple
 
 
 CHECKS = [
@@ -21,7 +22,7 @@ CHECKS = [
     ),
     (
         "production_layer",
-        5,
+        4,
         ["production layer", "screen", "flow"],
     ),
     (
@@ -31,7 +32,7 @@ CHECKS = [
     ),
     (
         "flow_coverage",
-        5,
+        4,
         ["happy path", "fallback", "error"],
     ),
     (
@@ -173,7 +174,7 @@ CHECKS = [
     ),
     (
         "step_output_contract",
-        2,
+        1,
         [
             "step output contract",
             "run-artifacts/<run-id>/",
@@ -182,17 +183,37 @@ CHECKS = [
             "do not mark any step complete without its artifact",
         ],
     ),
+    (
+        "planning_horizon_policy",
+        1,
+        [
+            "planning horizon policy",
+            "immediate implementation",
+            "do not output week-by-week",
+            "unless user explicitly requests timeline planning",
+        ],
+    ),
+    (
+        "design_direction_alignment",
+        2,
+        [
+            "design direction alignment policy",
+            "2 to 3 design direction options",
+            "recommended default option",
+            "one concise alignment question",
+        ],
+    ),
 ]
 
 
-def has_keywords(text: str, keywords: list[str], min_hits: int | None = None) -> bool:
+def has_keywords(text: str, keywords: List[str], min_hits: Optional[int] = None) -> bool:
     hits = sum(1 for keyword in keywords if keyword in text)
     if min_hits is None:
         min_hits = max(1, len(keywords) // 2)
     return hits >= min_hits
 
 
-def score_content(content: str) -> tuple[int, list[tuple[str, int, bool]]]:
+def score_content(content: str) -> Tuple[int, List[Tuple[str, int, bool]]]:
     text = content.lower()
     total = 0
     results = []
@@ -204,9 +225,33 @@ def score_content(content: str) -> tuple[int, list[tuple[str, int, bool]]]:
     return total, results
 
 
+def load_content(path: Path) -> Tuple[str, str]:
+    if path.is_file():
+        return path.read_text(encoding="utf-8", errors="ignore"), str(path)
+
+    if not path.is_dir():
+        raise ValueError("Path must be a markdown file or directory.")
+
+    md_files = sorted(
+        [p for p in path.rglob("*.md") if p.is_file()],
+        key=lambda p: str(p.relative_to(path)).lower(),
+    )
+    if not md_files:
+        raise ValueError("Directory contains no markdown files (*.md).")
+
+    sections = []
+    for md_file in md_files:
+        rel = md_file.relative_to(path)
+        text = md_file.read_text(encoding="utf-8", errors="ignore")
+        sections.append("## FILE: {0}\n\n{1}".format(rel, text))
+    combined = "\n\n".join(sections)
+    target = "{0} (combined {1} markdown files)".format(path, len(md_files))
+    return combined, target
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description="Score a UX markdown spec.")
-    parser.add_argument("spec_path", help="Path to markdown spec file")
+    parser.add_argument("spec_path", help="Path to markdown spec file or artifact directory")
     parser.add_argument("--min-score", type=int, default=80, help="Minimum passing score")
     args = parser.parse_args()
 
@@ -215,10 +260,15 @@ def main() -> int:
         print(f"ERROR: File not found: {path}")
         return 2
 
-    content = path.read_text(encoding="utf-8", errors="ignore")
+    try:
+        content, target = load_content(path)
+    except ValueError as exc:
+        print(f"ERROR: {exc}")
+        return 2
+
     score, results = score_content(content)
 
-    print(f"Spec: {path}")
+    print(f"Spec: {target}")
     print(f"Score: {score}/100")
     print(f"Threshold: {args.min_score}")
     print("")

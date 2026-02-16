@@ -64,6 +64,13 @@ For each run, it defines:
 
 The result is a decision baseline that prevents random UI changes.
 
+Before major direction lock, the skill runs a short alignment checkpoint:
+
+- 2 to 3 direction options
+- clear tradeoffs
+- one recommended option
+- one concise question to capture your preference
+
 ## Target Audience Modeling
 
 The skill "imagines" target users through structured modeling, not guesswork.
@@ -147,13 +154,20 @@ See:
 9. Package handoff artifacts
 10. Verify implementation with CI and traceability evidence
 
+Default delivery style:
+
+- Immediate implementation batches
+- Dependency-first ordering
+- No week-by-week roadmap unless user explicitly requests timeline planning
+
 ## Validation Scripts
 
 Run these at the right stage:
+Compatible with Python 3.9+.
 
 ```bash
 python scripts/infer_app_intent.py <repo_path>
-python scripts/ux_spec_score.py <spec.md> --min-score 80
+python scripts/ux_spec_score.py <spec.md_or_artifact_dir> --min-score 80
 python scripts/check_traceability.py <matrix.md_or_csv>
 ```
 

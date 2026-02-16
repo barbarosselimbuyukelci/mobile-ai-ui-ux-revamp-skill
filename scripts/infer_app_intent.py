@@ -54,6 +54,22 @@ SKIP_FILENAMES = {
     "infer_app_intent.py",
 }
 
+APP_DIR_HINTS = {
+    "src",
+    "app",
+    "lib",
+    "ios",
+    "android",
+    "features",
+    "feature",
+    "screens",
+    "screen",
+    "pages",
+    "page",
+    "modules",
+    "module",
+}
+
 RUNTIME_SIGNALS = {
     "react_native": ["react-native", "@react-navigation", "native-base", "react native paper"],
     "flutter": ["flutter", "materialapp", "cupertinoapp", "go_router"],
@@ -378,19 +394,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-APP_DIR_HINTS = {
-    "src",
-    "app",
-    "lib",
-    "ios",
-    "android",
-    "features",
-    "feature",
-    "screens",
-    "screen",
-    "pages",
-    "page",
-    "modules",
-    "module",
-}
-
