@@ -1,0 +1,54 @@
+# CI Quality Gates Template (adapt to your CI provider)
+# Purpose: block release when UX-critical quality gates fail.
+
+name: ux-quality-gates
+
+on:
+  pull_request:
+  push:
+    branches: [ main ]
+
+jobs:
+  lint-and-unit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: echo "Run lint + unit tests"
+
+  e2e-golden-flow:
+    runs-on: ubuntu-latest
+    needs: [ lint-and-unit ]
+    steps:
+      - uses: actions/checkout@v4
+      - run: echo "Run E2E for open -> discover -> act -> verify -> manage"
+
+  state-coverage:
+    runs-on: ubuntu-latest
+    needs: [ lint-and-unit ]
+    steps:
+      - uses: actions/checkout@v4
+      - run: echo "Run tests for loading/empty/error/success/offline states"
+
+  accessibility:
+    runs-on: ubuntu-latest
+    needs: [ lint-and-unit ]
+    steps:
+      - uses: actions/checkout@v4
+      - run: echo "Run accessibility checks and report"
+
+  visual-regression:
+    runs-on: ubuntu-latest
+    needs: [ lint-and-unit ]
+    steps:
+      - uses: actions/checkout@v4
+      - run: echo "Run visual regression on critical screens"
+
+  release-gate:
+    runs-on: ubuntu-latest
+    needs:
+      - e2e-golden-flow
+      - state-coverage
+      - accessibility
+      - visual-regression
+    steps:
+      - run: echo "All UX quality gates passed"

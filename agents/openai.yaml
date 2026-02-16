@@ -1,0 +1,4 @@
+interface:
+  display_name: "UI Experience Architect"
+  short_description: "Design bold, production-ready mobile UX with trust"
+  default_prompt: "Use $craft-interface-experience to create a creative, high-confidence mobile UX concept and production spec with explainability, accessibility, and usability gates."
