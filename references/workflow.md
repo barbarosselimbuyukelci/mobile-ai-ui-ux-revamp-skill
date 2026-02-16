@@ -9,6 +9,8 @@
 5. Done criteria
 6. Delivery proof
 7. Execution continuity policy
+8. Method defaults
+9. Validation timing
 
 ## Output Contract
 
@@ -86,3 +88,26 @@ When paused for blocker:
 - Ask one concise blocker question.
 - Propose a best-effort default assumption.
 - Resume immediately after answer or proceed with stated assumption if no answer.
+
+## Method Defaults
+
+Default method set:
+
+- JTBD + task-flow decomposition for flow design
+- State-first screen specification for behavior definition
+- Token-first visual system for UI consistency
+- Heuristic-first evaluation before usability test planning
+
+Do not ask "which design method should we use?" mid-run unless explicitly requested
+or blocked by mandatory external process constraints.
+
+## Validation Timing
+
+Run scripts only at designated stages:
+
+- Step 0: intent inference script
+- Post Step 8: spec scoring script
+- Step 9: traceability validation script
+
+Never run score scripts immediately after Step 0.
+Never block progression on early scoring.

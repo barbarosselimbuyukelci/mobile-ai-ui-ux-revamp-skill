@@ -124,6 +124,38 @@ For every run, maintain a progress artifact using:
 
 - `assets/execution-report-template.md`
 
+## Method Selection Policy (Critical)
+
+Do not ask the user to choose methodology after Step 0 unless it is a hard blocker.
+Apply default methods automatically and continue:
+
+- Flow design: JTBD + task-flow decomposition + happy/failure path mapping
+- Screen behavior: state-first specification (`loading, empty, error, success, offline`)
+- Visual system: token-first system + platform convention alignment
+- UX evaluation: heuristic review first, then usability test planning
+
+Ask methodology questions only when:
+
+- The user explicitly requests method comparison
+- A compliance/process mandate requires a named framework
+
+If no method is specified, proceed with defaults and record the choice in
+`assets/execution-report-template.md`.
+
+## Validation Timing Policy (Critical)
+
+Do not run scoring/validation scripts before core artifacts exist.
+
+Strict timing:
+
+- `scripts/infer_app_intent.py`: Step 0
+- `scripts/ux_spec_score.py`: after Step 8 artifacts are complete
+- `scripts/check_traceability.py`: Step 9 when matrix exists
+
+Never pause workflow at Step 0 or Step 1 to run quality-score scripts.
+Run validation at the defined stage, apply fixes internally, and continue.
+Ask the user only if a hard blocker prevents script execution.
+
 ## Step 0: Infer Product Intent From Code (Mandatory When Code Exists)
 
 When a codebase is available, derive intent before proposing UX.
@@ -278,6 +310,7 @@ All gates below are mandatory before final output.
 - Include expected failure points and recovery checks.
 
 Read `references/accessibility.md` and `references/evaluation-testing.md` for exact checks.
+Run quality scripts according to Validation Timing Policy only.
 
 ## Step 8: Package Implementation Handoff
 

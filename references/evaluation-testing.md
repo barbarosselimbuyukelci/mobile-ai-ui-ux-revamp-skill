@@ -97,3 +97,19 @@ Verify:
 - Workflow log shows sequential execution from Step 0 to Step 10
 - No mid-step "what next" pause occurred without a hard blocker
 - Any pause includes blocker reason, question, and fallback assumption
+
+## Method Selection Validation
+
+Verify:
+
+- Default method set was applied automatically when user did not specify method
+- No method-choice question interrupted workflow without hard blocker
+- Method choices are logged in execution report
+
+## Validation Timing Validation
+
+Verify:
+
+- `ux_spec_score.py` was not run before Step 8 artifacts existed
+- `check_traceability.py` was run only when matrix artifact existed
+- Early script runs did not block progression to downstream steps

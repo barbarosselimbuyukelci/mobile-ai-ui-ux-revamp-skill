@@ -11,32 +11,32 @@ from pathlib import Path
 CHECKS = [
     (
         "problem_framing",
-        5,
+        4,
         ["business goal", "user goal", "success metric"],
     ),
     (
         "concept_layer",
-        5,
+        4,
         ["concept layer", "experience", "visual direction"],
     ),
     (
         "production_layer",
-        6,
+        5,
         ["production layer", "screen", "flow"],
     ),
     (
         "mobile_scope",
-        5,
+        4,
         ["mobile", "ios", "android"],
     ),
     (
         "flow_coverage",
-        6,
+        5,
         ["happy path", "fallback", "error"],
     ),
     (
         "state_coverage",
-        5,
+        4,
         ["loading", "empty", "success", "offline"],
     ),
     (
@@ -46,12 +46,12 @@ CHECKS = [
     ),
     (
         "heuristic_gate",
-        6,
+        5,
         ["heuristic", "score", "severity"],
     ),
     (
         "usability_test_gate",
-        6,
+        5,
         ["usability test", "task completion", "time on task"],
     ),
     (
@@ -145,6 +145,30 @@ CHECKS = [
             "hard blocker",
             "step 0",
             "step 10",
+        ],
+    ),
+    (
+        "method_selection_policy",
+        4,
+        [
+            "method selection policy",
+            "default methods",
+            "do not ask the user to choose methodology",
+            "jtbd",
+            "state-first",
+            "token-first",
+        ],
+    ),
+    (
+        "validation_timing_policy",
+        4,
+        [
+            "validation timing policy",
+            "do not run scoring",
+            "step 0",
+            "post step 8",
+            "step 9",
+            "never run score scripts immediately after step 0",
         ],
     ),
 ]

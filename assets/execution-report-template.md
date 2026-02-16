@@ -30,9 +30,28 @@ Use this file to record continuous workflow execution.
 | step | blocker_reason | question_asked | fallback_assumption | resolution |
 |---|---|---|---|---|
 
+## Method Selection Log
+
+| area | method_selected | source (default/user-mandated) | reason |
+|---|---|---|---|
+| flow design | JTBD + task-flow decomposition | default | |
+| screen behavior | state-first specification | default | |
+| visual system | token-first system | default | |
+| evaluation | heuristic-first + usability plan | default | |
+
+## Validation Timing Log
+
+| script | intended_step | actual_step | status | notes |
+|---|---|---|---|---|
+| scripts/infer_app_intent.py | 0 |  | pending | |
+| scripts/ux_spec_score.py | 8+ |  | pending | |
+| scripts/check_traceability.py | 9 |  | pending | |
+
 ## Final Verification
 
 - [ ] Continuous execution confirmed
 - [ ] Any blockers documented with fallback assumptions
+- [ ] No mid-run method-choice interruption without hard blocker
+- [ ] Validation scripts run at correct steps
 - [ ] Required artifacts produced
 - [ ] Quality gates passed
