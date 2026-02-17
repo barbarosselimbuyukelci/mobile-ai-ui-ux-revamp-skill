@@ -12,8 +12,19 @@ Most AI design flows stop too early.
 - They ask too many method questions mid-run.
 - They run scoring too early and stall execution.
 - They fail to keep durable memory across long revamp sessions.
+- They silently skip design requirements when architecture changes are needed.
 
 This skill fixes that with strict execution rules, artifact-based memory, and validation timing.
+
+## What This Prevents In Practice
+
+This skill is built to prevent the most common low-quality AI implementation patterns:
+
+- Partial implementation presented as complete delivery
+- Silent requirement drops when a feature needs structural refactor
+- "Looks done" outputs without test, traceability, or CI evidence
+- Overly generic plans that ignore mobile runtime and library constraints
+- Unrequested timeline theater instead of actionable implementation batches
 
 ## 2026 Trend Alignment
 
@@ -36,7 +47,7 @@ Trend coverage is baked into workflow rules and references, especially:
 
 Attribution note:
 
-- This trend framing also references: "10 UX Design Shifts You Can't Ignore in 2026"  
+- This trend framing also references: "10 UX Design Shifts You Can't Ignore in 2026"
   https://uxdesign.cc/10-ux-design-shifts-you-cant-ignore-in-2026-8f0da1c6741d
 
 ## Core Capabilities
@@ -74,7 +85,7 @@ Before major direction lock, the skill runs a short alignment checkpoint:
 
 ## Target Audience Modeling
 
-The skill "imagines" target users through structured modeling, not guesswork.
+The skill imagines target users through structured modeling, not guesswork.
 
 It builds:
 
@@ -125,6 +136,30 @@ For major decisions, the skill documents:
 
 This keeps design review objective and implementation-friendly.
 
+## Implementation Agent Contract (No Half Delivery)
+
+When output is handed to a coding agent, these checks are non-negotiable:
+
+- Every requirement must be marked as `implemented`, `blocked`, or `deferred`.
+- `blocked` and `deferred` entries must include reason, evidence, and decision owner.
+- Architecture-impacting requirements must be reported in `13-architecture-delta-report.md`.
+- Completeness must be tracked in `14-implementation-completeness-matrix.md`.
+- Delivery claims require traceability and CI evidence, not only markdown output.
+- If an agent cannot implement something safely, it must report explicitly and stop pretending completion.
+
+## Works For Revamp And New Product
+
+This skill supports both scenarios:
+
+1. Revamp mode (code exists)
+- Step 0 infers product intent from routes, screens, services, and state.
+- Design decisions are anchored to real code evidence.
+
+2. Greenfield mode (no code yet)
+- Step 0 switches to assumption-based intent framing.
+- Assumptions are explicit, testable, and validated through user stories and flow hypotheses.
+- The same quality gates, handoff, and verification structure still applies.
+
 ## What You Get Per Run
 
 In addition to final specs, each run produces durable artifacts:
@@ -136,6 +171,7 @@ In addition to final specs, each run produces durable artifacts:
 - Visual system and UX writing package
 - Quality gate reports
 - Traceability and CI verification evidence
+- Execution manifest for coding agents
 
 See:
 
@@ -154,6 +190,7 @@ See:
 8. Run mandatory quality gates
 9. Package handoff artifacts
 10. Verify implementation with CI and traceability evidence
+11. Generate execution-agent manifest for controlled coding
 
 Default delivery style:
 
@@ -163,7 +200,7 @@ Default delivery style:
 
 ## Validation Scripts
 
-Run these at the right stage:
+Run these at the right stage.
 Compatible with Python 3.9+.
 
 ```bash
@@ -200,8 +237,7 @@ Then execute with:
 - `assets/architecture-delta-template.md`
 - `assets/implementation-completeness-template.md`
 
-This lets a second coding agent move directly from design artifacts to
-dependency-ordered implementation batches.
+This lets a second coding agent move directly from design artifacts to dependency-ordered implementation batches.
 
 ## Library Coverage
 
