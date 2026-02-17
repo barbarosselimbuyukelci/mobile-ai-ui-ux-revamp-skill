@@ -16,6 +16,8 @@
 12. Design direction alignment checkpoint
 13. Execution agent handoff
 14. Implementation integrity policy
+15. Cross-artifact consistency policy
+16. Execution discipline policy
 
 ## Output Contract
 
@@ -114,6 +116,8 @@ Run scripts only at designated stages:
 - Step 0: intent inference script
 - Post Step 8: spec scoring script
 - Step 9: traceability validation script
+- Step 9 or Step 10: artifact consistency validation script
+- Step 10: execution-readiness validation script
 
 Never run score scripts immediately after Step 0.
 Never block progression on early scoring.
@@ -129,6 +133,7 @@ Use required filenames and minimum sections from:
 - `references/step-output-contract.md`
 
 Do not mark any step complete without its artifact file and execution-report link.
+Do not mark the run complete if consistency keys are missing in required artifacts.
 
 ## Planning Horizon Policy
 
@@ -187,3 +192,43 @@ If a requirement requires architecture change:
 - track status in `14-implementation-completeness-matrix.md`
 
 A run is incomplete if requirements are missing status or rationale.
+
+## Cross-Artifact Consistency Policy
+
+Consistency is mandatory across all artifacts, not only navigation.
+
+Required behavior:
+
+- Use upstream source-of-truth artifacts for each decision domain.
+- Do not resolve conflicts by majority vote across files.
+- If a source decision changes, regenerate all dependent artifacts.
+- Keep `Consistency Keys` aligned across required files.
+
+Validation command:
+
+`python scripts/check_artifact_consistency.py <run-artifacts/run-id>`
+
+Completion rule:
+
+- Run is incomplete if consistency script fails.
+
+## Execution Discipline Policy
+
+Execution quality requires explicit preflight and plan handoff.
+
+Required behavior before coding:
+
+- Generate `15-artifact-intake.md` proving all artifacts were read.
+- Generate `16-execution-batch-plan.md` proving dependency-ordered plan exists.
+- If planning skill/agent is available, delegate planning and attach result.
+- Do not edit code before preflight and plan artifacts exist.
+
+Required behavior during and after coding:
+
+- Maintain `17-implementation-change-log.md` by batch.
+- Validate readiness with:
+  `python scripts/check_execution_readiness.py <run-artifacts/run-id>`
+
+Completion rule:
+
+- Run is incomplete if execution-readiness script fails.

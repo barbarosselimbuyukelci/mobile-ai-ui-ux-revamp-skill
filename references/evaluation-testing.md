@@ -165,3 +165,40 @@ Verify:
 - `13-architecture-delta-report.md` exists when structural changes are needed
 - Architecture-impact items include migration and rollback notes
 - Completeness matrix links architecture-impact requirements to decisions
+
+## Cross-Artifact Consistency Validation
+
+Verify:
+
+- Every required artifact includes `## Consistency Keys`
+- Upstream source-of-truth decisions are not overridden by downstream files
+- No conflicting values exist for critical keys across artifacts
+- Conflict resolution follows precedence, not majority voting
+
+Run:
+
+`python scripts/check_artifact_consistency.py <run-artifacts/run-id>`
+
+Fail criteria:
+
+- Any cross-artifact conflict on critical keys
+- Missing required consistency keys in required files
+
+## Execution Readiness Validation
+
+Verify:
+
+- `15-artifact-intake.md` exists and shows all required artifacts were read
+- `16-execution-batch-plan.md` exists and includes populated dependency-ordered batches
+- Planning delegation is documented when planning skill/agent is available
+- `17-implementation-change-log.md` exists and tracks batch-level changes
+
+Run:
+
+`python scripts/check_execution_readiness.py <run-artifacts/run-id>`
+
+Fail criteria:
+
+- Missing preflight intake or batch plan artifacts
+- No evidence of planned execution before coding
+- Missing or empty batch-level change log

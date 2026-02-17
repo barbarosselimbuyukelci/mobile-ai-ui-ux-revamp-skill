@@ -181,6 +181,8 @@ CHECKS = [
             "required step artifacts",
             "execution report",
             "do not mark any step complete without its artifact",
+            "consistency keys",
+            "cross-artifact consistency",
         ],
     ),
     (
@@ -216,6 +218,11 @@ CHECKS = [
             "13-architecture-delta-report.md",
             "14-implementation-completeness-matrix.md",
             "check_implementation_completeness.py",
+            "check_artifact_consistency.py",
+            "15-artifact-intake.md",
+            "16-execution-batch-plan.md",
+            "17-implementation-change-log.md",
+            "check_execution_readiness.py",
         ],
     ),
 ]

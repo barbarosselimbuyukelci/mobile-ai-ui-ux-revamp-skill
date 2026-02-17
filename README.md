@@ -58,6 +58,8 @@ Attribution note:
 - Design-system and UI-library mapping across major mobile stacks
 - Accessibility, heuristic, and usability gates
 - Traceability matrix and CI quality-gate validation
+- Cross-artifact consistency gate with source-of-truth precedence
+- Execution-discipline gate (artifact intake, batch plan, change log)
 - Step output contract with file-based run memory
 - No silent requirement drops during implementation
 
@@ -145,6 +147,8 @@ When output is handed to a coding agent, these checks are non-negotiable:
 - Architecture-impacting requirements must be reported in `13-architecture-delta-report.md`.
 - Completeness must be tracked in `14-implementation-completeness-matrix.md`.
 - Delivery claims require traceability and CI evidence, not only markdown output.
+- Cross-artifact consistency must pass before delivery claims.
+- Execution-readiness must pass before delivery claims.
 - If an agent cannot implement something safely, it must report explicitly and stop pretending completion.
 
 ## Works For Revamp And New Product
@@ -207,6 +211,8 @@ Compatible with Python 3.9+.
 python scripts/infer_app_intent.py <repo_path>
 python scripts/ux_spec_score.py <spec.md_or_artifact_dir> --min-score 80
 python scripts/check_traceability.py <matrix.md_or_csv>
+python scripts/check_artifact_consistency.py <run-artifacts/run-id>
+python scripts/check_execution_readiness.py <run-artifacts/run-id>
 python scripts/build_execution_manifest.py <run-artifacts/run-id>
 python scripts/check_implementation_completeness.py <matrix.md_or_csv>
 ```
@@ -222,6 +228,9 @@ Each step must write its own output artifact. See:
 - `references/step-output-contract.md`
 - `assets/execution-report-template.md`
 
+Each required artifact must include a `Consistency Keys` block so cross-artifact
+conflicts can be detected automatically.
+
 ## Execution Agent Setup
 
 After design artifacts are ready, generate a coding handoff manifest:
@@ -236,6 +245,9 @@ Then execute with:
 - `assets/execution-agent-prompt-template.md`
 - `assets/architecture-delta-template.md`
 - `assets/implementation-completeness-template.md`
+- `assets/artifact-intake-template.md`
+- `assets/execution-batch-plan-template.md`
+- `assets/implementation-change-log-template.md`
 
 This lets a second coding agent move directly from design artifacts to dependency-ordered implementation batches.
 

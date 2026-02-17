@@ -13,6 +13,8 @@ Validate that the implemented interface matches the approved UX specification.
 5. Accessibility and usability checks
 6. Visual and interaction regression
 7. Post-release telemetry validation
+8. Cross-artifact consistency validation
+9. Execution-readiness validation
 
 ## 1) Spec Testability
 
@@ -84,6 +86,34 @@ After deployment, verify:
 
 Define rollback triggers before release.
 
+## 8) Cross-Artifact Consistency Validation
+
+Before delivery claims, verify there are no conflicts across artifact decisions.
+
+Run:
+
+`python scripts/check_artifact_consistency.py <run-artifacts/run-id>`
+
+Fail if:
+
+- Required consistency keys are missing
+- Source-of-truth decisions conflict across artifacts
+- Conflict was resolved by majority vote instead of precedence
+
+## 9) Execution-Readiness Validation
+
+Before delivery claims, verify execution was planned and tracked, not rushed.
+
+Run:
+
+`python scripts/check_execution_readiness.py <run-artifacts/run-id>`
+
+Fail if:
+
+- `15-artifact-intake.md` or `16-execution-batch-plan.md` is missing
+- Planning delegation/fallback is not documented
+- `17-implementation-change-log.md` has no progressed batch
+
 ## Minimum Delivery Proof
 
 A release is considered UX-verified only when:
@@ -92,4 +122,6 @@ A release is considered UX-verified only when:
 - Golden-flow E2E is green
 - State coverage tests are green
 - Accessibility and visual regression checks are green
+- Cross-artifact consistency check is green
+- Execution-readiness check is green
 - Telemetry guardrails are configured

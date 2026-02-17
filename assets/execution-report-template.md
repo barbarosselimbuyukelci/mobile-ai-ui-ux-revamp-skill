@@ -48,7 +48,9 @@ Use this file to record continuous workflow execution.
 | scripts/infer_app_intent.py | 0 |  | pending | |
 | scripts/ux_spec_score.py | 8+ |  | pending | |
 | scripts/check_traceability.py | 9 |  | pending | |
+| scripts/check_artifact_consistency.py | 9/10 |  | pending | |
 | scripts/check_implementation_completeness.py | 9/10 |  | pending | |
+| scripts/check_execution_readiness.py | 10 |  | pending | |
 
 ## Planning Horizon Log
 
@@ -76,6 +78,18 @@ Use this file to record continuous workflow execution.
 | Playbook reference attached | pending | |
 | 13-architecture-delta-report.md prepared | pending | |
 | 14-implementation-completeness-matrix.md prepared | pending | |
+| 15-artifact-intake.md prepared | pending | |
+| 16-execution-batch-plan.md prepared | pending | |
+| 17-implementation-change-log.md prepared | pending | |
+
+## Planning Delegation Log
+
+| item | status | notes |
+|---|---|---|
+| Planning skill/agent availability checked | pending | |
+| Planning delegated | pending | |
+| Delegation output linked | pending | |
+| Fallback planning path documented | pending | |
 
 ## Final Verification
 
@@ -84,7 +98,9 @@ Use this file to record continuous workflow execution.
 - [ ] No mid-run method-choice interruption without hard blocker
 - [ ] Validation scripts run at correct steps
 - [ ] Step output contract satisfied for completed steps
+- [ ] Cross-artifact consistency check passed
 - [ ] Design direction alignment checkpoint completed or explicitly skipped
 - [ ] Execution agent handoff package is complete
+- [ ] Execution-readiness check passed before delivery claim
 - [ ] Required artifacts produced
 - [ ] Quality gates passed

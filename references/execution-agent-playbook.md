@@ -23,12 +23,27 @@ Required artifact set from design run:
 
 ## Execution Rules
 
-1. Implement batches in dependency order.
-2. Do not redesign from scratch unless artifacts conflict with code reality.
-3. Keep library target and component mapping consistent with spec.
-4. Update traceability matrix during implementation, not after.
-5. Run tests and quality gates before claiming completion.
-6. Never silently skip a requirement because it needs architecture changes.
+1. Do not start coding before preflight intake and batch plan artifacts are created.
+2. Implement batches in dependency order.
+3. Do not redesign from scratch unless artifacts conflict with code reality.
+4. Keep library target and component mapping consistent with spec.
+5. Run cross-artifact consistency check before coding.
+6. Update traceability matrix during implementation, not after.
+7. Run tests and quality gates before claiming completion.
+8. Never silently skip a requirement because it needs architecture changes.
+9. If a planning skill/agent exists in the runtime, delegate planning first and attach its output.
+
+## Mandatory Preflight (Before Any Code Edit)
+
+Create:
+
+- `15-artifact-intake.md`: artifact-by-artifact read notes, extracted decisions, risk map
+- `16-execution-batch-plan.md`: dependency-ordered batches, requirement mapping, validation plan
+
+Hard gate:
+
+- No code edits until both files exist.
+- If planning skill/agent is available, use it for `16-execution-batch-plan.md`.
 
 ## Batch Model
 
@@ -43,6 +58,9 @@ Required artifact set from design run:
 - Updated traceability matrix
 - `13-architecture-delta-report.md` when structural changes are needed
 - `14-implementation-completeness-matrix.md` for all design requirements
+- `15-artifact-intake.md` proving artifacts were read
+- `16-execution-batch-plan.md` proving planned execution path
+- `17-implementation-change-log.md` mapping each batch to changed files and req IDs
 - Test results summary
 - Validation results for:
   - E2E golden flow
@@ -58,6 +76,15 @@ If implementation conflicts with artifacts:
 - Propose minimal correction
 - Continue with safest implementable path
 - Mark assumption and risk explicitly
+- Regenerate dependent artifacts after source-of-truth correction
+
+Consistency check command:
+
+`python scripts/check_artifact_consistency.py <run-artifacts/run-id>`
+
+Execution readiness check command:
+
+`python scripts/check_execution_readiness.py <run-artifacts/run-id>`
 
 If requirement cannot be implemented in current batch:
 

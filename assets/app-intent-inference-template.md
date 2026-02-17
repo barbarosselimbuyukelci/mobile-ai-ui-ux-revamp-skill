@@ -7,6 +7,14 @@
 - UI library stack:
 - Confidence:
 
+## Consistency Keys
+
+- app_purpose_hypothesis:
+- primary_operation_sequence:
+- platform_runtime:
+- design_system_strategy:
+- ui_library_stack:
+
 ## App Purpose Inference
 
 - Purpose statement:

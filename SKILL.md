@@ -152,6 +152,8 @@ Strict timing:
 - `scripts/infer_app_intent.py`: Step 0
 - `scripts/ux_spec_score.py`: after Step 8 artifacts are complete
 - `scripts/check_traceability.py`: Step 9 when matrix exists
+- `scripts/check_artifact_consistency.py`: Step 9 or Step 10 on run-artifacts folder
+- `scripts/check_execution_readiness.py`: Step 10 before delivery claim
 
 Never pause workflow at Step 0 or Step 1 to run quality-score scripts.
 Run validation at the defined stage, apply fixes internally, and continue.
@@ -220,6 +222,45 @@ Do not skip this checkpoint unless user explicitly says "decide without me".
 If user does not respond, proceed with recommended default and record the
 assumption in execution report.
 
+## Cross-Artifact Consistency Policy (Critical)
+
+No cross-artifact contradictions are allowed.
+
+Mandatory rules:
+
+- Use upstream artifacts as source-of-truth for each decision domain.
+- Do not resolve conflicts by majority vote across files.
+- If a source-of-truth decision changes, regenerate dependent downstream artifacts.
+- Every required artifact must include `## Consistency Keys` and keep values aligned.
+
+Source-of-truth precedence:
+
+- Product purpose and operation sequence: `01-intent-inference.md`
+- IA and navigation model: `04-mobile-flows.md`
+- Platform/design-system/library target: `05-screen-specs.md`
+- Visual concept: `06-visual-system.md`
+- Copy terminology contract: `07-ux-copy.md`
+
+A run cannot be marked complete if cross-artifact consistency fails.
+
+## Execution Discipline Policy (Critical)
+
+Execution cannot start with ad-hoc coding.
+
+Mandatory preflight before any code edit:
+
+- Create `15-artifact-intake.md` proving artifacts were read
+- Create `16-execution-batch-plan.md` proving dependency-ordered plan exists
+- If planning skill/agent exists in the runtime, delegate planning first and
+  attach plan output
+
+Mandatory during execution:
+
+- Maintain `17-implementation-change-log.md` per batch
+- Keep traceability and completeness artifacts updated while coding
+
+A run cannot be marked complete if execution-readiness checks fail.
+
 ## Step Output Contract (Critical)
 
 Do not keep step outputs only in chat context.
@@ -230,6 +271,7 @@ Use `references/step-output-contract.md` to enforce:
 - Required output file per step
 - Required sections per file
 - Dependency chain between step artifacts
+- `Consistency Keys` presence and alignment across artifacts
 
 If a required artifact is missing, do not mark that step complete.
 
@@ -436,6 +478,14 @@ When implementation completeness matrix exists, validate it:
 
 `python scripts/check_implementation_completeness.py <matrix.md_or_csv>`
 
+Validate cross-artifact consistency before delivery claims:
+
+`python scripts/check_artifact_consistency.py <run-artifacts/run-id>`
+
+Validate execution discipline before delivery claims:
+
+`python scripts/check_execution_readiness.py <run-artifacts/run-id>`
+
 ## Step 10: Execution Agent Handoff (Recommended)
 
 If implementation will be done by a coding agent, create an execution-ready
@@ -457,6 +507,7 @@ The execution agent must:
 - Implement dependency-ordered batches
 - Update traceability evidence while coding
 - Maintain implementation completeness matrix per requirement
+- Produce intake, plan, and change-log artifacts before completion
 - Run tests and quality gates before completion
 
 ## Quality Gate
@@ -484,6 +535,8 @@ Before final response, verify all of the following:
 - Architecture-impact items are reported with clear decision path.
 - Traceability matrix is complete and evidence-backed.
 - Implementation completeness matrix is complete and validated.
+- Cross-artifact consistency validation passes with no conflicts.
+- Execution-readiness validation passes with planning and batch tracking evidence.
 - CI quality-gate evidence is present for critical flows and states.
 - Golden-flow E2E checks are present.
 - Visual and accessibility regression checks are present.
@@ -491,6 +544,14 @@ Before final response, verify all of the following:
 When a detailed markdown spec exists, run:
 
 `python scripts/ux_spec_score.py <spec.md_or_artifact_dir> --min-score 80`
+
+When run artifacts exist, run:
+
+`python scripts/check_artifact_consistency.py <run-artifacts/run-id>`
+
+For implementation runs, run:
+
+`python scripts/check_execution_readiness.py <run-artifacts/run-id>`
 
 If score is below threshold, revise and re-score.
 
@@ -526,6 +587,9 @@ Load resources only when needed:
 - `assets/execution-agent-prompt-template.md`: Ready-to-run prompt contract for implementation agents.
 - `assets/architecture-delta-template.md`: Report architecture-impact requirements and migration decisions.
 - `assets/implementation-completeness-template.md`: Track implementation status of every design requirement.
+- `assets/artifact-intake-template.md`: Track artifact-by-artifact reading before coding.
+- `assets/execution-batch-plan-template.md`: Create dependency-ordered implementation plan.
+- `assets/implementation-change-log-template.md`: Track batch-level file and requirement changes.
 
 ## Collaboration Rules
 
